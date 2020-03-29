@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "appInsights1": {
+      "resourceId": "/subscriptions/7c8547b4-6530-4d73-acfa-fbea0df7b244/resourcegroups/bing-covid/providers/Microsoft.Insights/components/bing-covid",
+      "type": "appInsights.azure",
+      "connectionId": null
+    }
+  }
+}

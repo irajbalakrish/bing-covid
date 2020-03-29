@@ -1,0 +1,110 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp5.0</TargetFramework>
+        <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+        <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+        <IsPackable>false</IsPackable>
+        <SpaRoot>ClientApp\</SpaRoot>
+        <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+        <!-- Set this to true if you enable server-side prerendering -->
+        <BuildServerSideRenderer>false</BuildServerSideRenderer>
+        <RootNamespace>bing_covid</RootNamespace>
+        <ApplicationInsightsResourceId>/subscriptions/7c8547b4-6530-4d73-acfa-fbea0df7b244/resourcegroups/bing-covid/providers/Microsoft.Insights/components/bing-covid</ApplicationInsightsResourceId>
+        <UserSecretsId>acf37792-eb6c-4295-8de0-e551a399343f</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.12.0" />
+        <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.0-preview.1.20124.5" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Don't publish the SPA source files, but do show them in the project files list -->
+        <None Remove="$(SpaRoot)**" />
+        <Content Include="ClientApp\src\assets\share-card.png" />
+        <None Include="ClientApp\.editorconfig" />
+        <None Include="ClientApp\.gitignore" />
+        <None Include="ClientApp\angular.json" />
+        <None Include="ClientApp\browserslist" />
+        <None Include="ClientApp\e2e\protractor.conf.js" />
+        <None Include="ClientApp\e2e\src\app.e2e-spec.ts" />
+        <None Include="ClientApp\e2e\src\app.po.ts" />
+        <None Include="ClientApp\e2e\tsconfig.e2e.json" />
+        <None Include="ClientApp\package-lock.json" />
+        <None Include="ClientApp\package.json" />
+        <None Include="ClientApp\README.md" />
+        <None Include="ClientApp\src\app\app.component.html" />
+        <None Include="ClientApp\src\app\app.component.ts" />
+        <None Include="ClientApp\src\app\app.module.ts" />
+        <None Include="ClientApp\src\app\app.server.module.ts" />
+        <None Include="ClientApp\src\app\counter\counter.component.html" />
+        <None Include="ClientApp\src\app\counter\counter.component.spec.ts" />
+        <None Include="ClientApp\src\app\counter\counter.component.ts" />
+        <None Include="ClientApp\src\app\fetch-data\fetch-data-style.css" />
+        <None Include="ClientApp\src\app\fetch-data\fetch-data.component.html" />
+        <None Include="ClientApp\src\app\fetch-data\fetch-data.component.ts" />
+        <None Include="ClientApp\src\app\fetch-data\fetch-data.model.ts" />
+        <None Include="ClientApp\src\app\home\home.component.html" />
+        <None Include="ClientApp\src\app\home\home.component.ts" />
+        <None Include="ClientApp\src\app\nav-menu\nav-menu.component.css" />
+        <None Include="ClientApp\src\app\nav-menu\nav-menu.component.html" />
+        <None Include="ClientApp\src\app\nav-menu\nav-menu.component.ts" />
+        <None Include="ClientApp\src\assets\.gitkeep" />
+        <None Include="ClientApp\src\assets\undraw_doctors_hwty.svg" />
+        <None Include="ClientApp\src\environments\environment.prod.ts" />
+        <None Include="ClientApp\src\environments\environment.ts" />
+        <None Include="ClientApp\src\index.html" />
+        <None Include="ClientApp\src\karma.conf.js" />
+        <None Include="ClientApp\src\main.ts" />
+        <None Include="ClientApp\src\polyfills.ts" />
+        <None Include="ClientApp\src\styles.css" />
+        <None Include="ClientApp\src\test.ts" />
+        <None Include="ClientApp\src\tsconfig.app.json" />
+        <None Include="ClientApp\src\tsconfig.server.json" />
+        <None Include="ClientApp\src\tsconfig.spec.json" />
+        <None Include="ClientApp\src\tslint.json" />
+        <None Include="ClientApp\tsconfig.json" />
+        <None Include="ClientApp\tslint.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="ClientApp\src\assets\undraw_medicine_b1ol.svg" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="ClientApp\src\assets\undraw_doctor_kw5l.svg" />
+    </ItemGroup>
+
+    <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+        <!-- Ensure Node.js is installed -->
+        <Exec Command="node --version" ContinueOnError="true">
+            <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+        </Exec>
+        <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+        <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    </Target>
+
+    <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+        <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+        <!-- Include the newly-built files in the publish output -->
+        <ItemGroup>
+            <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+            <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+            <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+                <RelativePath>%(DistFiles.Identity)</RelativePath>
+                <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+                <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+            </ResolvedFileToPublish>
+        </ItemGroup>
+    </Target>
+
+</Project>

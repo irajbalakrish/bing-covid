@@ -8,7 +8,6 @@
     <div class="card__img"></div>
     <a target="_blank" href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports" class="card_link">
       <div class="card__img--hover"></div>
-
       <div class="card__info">
         <span class="card__category"><mark> WORLDWIDE</mark></span>
         <div class="card__title">
@@ -83,7 +82,7 @@
   <!-- Position Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Country</th>
-    <td mat-cell *matCellDef="let element"> {{element.displayName | titlecase}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.id | titlecase}} </td>
   </ng-container>
 
   <!-- Name Column -->

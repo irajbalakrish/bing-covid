@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 
-.itemspace{
-  margin-top:35px;
+.itemspace {
+  margin-top: 35px;
 }
 
-*{
+* {
   box-sizing: border-box;
 }
 
@@ -66,6 +66,7 @@ body {
   vertical-align: middle;
   fill: #AD7D52;
 }
+
 .card__time {
   font-size: 12px;
   color: #AD7D52;
@@ -86,7 +87,6 @@ body {
   height: 235px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-
 }
 
 .card__info-hover {
@@ -108,8 +108,8 @@ body {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   top: 0;
-
 }
+
 .card {
   margin-right: 25px;
   transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
@@ -120,10 +120,11 @@ body {
   overflow: hidden;
   box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
 }
-.card:hover {
-  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
-  transform: scale(1.10, 1.10);
-}
+
+  .card:hover {
+    box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+    transform: scale(1.10, 1.10);
+  }
 
 .card__info {
   z-index: 2;
@@ -179,8 +180,14 @@ body {
   .cards, .card, .mat-elevation-z8 {
     width: 100vw;
     flex-direction: column;
-    margin-top:10px;
-    align:left;
+    margin-top: 10px;
   }
+
+    .card:hover {
+      box-shadow: unset;
+      transform: unset;
+      height: 100%;
+    }
+
   /* stacks flex-items vertically */
 }

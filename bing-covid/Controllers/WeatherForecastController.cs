@@ -24,7 +24,7 @@ namespace bing_covid.Controllers
         [HttpGet]
         public async Task<string> Get()
         {
-            var resultContent = await _client.GetAsync("https://bing.com/covid/data");
+            var resultContent = await _client.GetAsync("https://api.coronastatistics.live/countries?sort=cases");
             return await resultContent.Content.ReadAsStringAsync();
         }
     }

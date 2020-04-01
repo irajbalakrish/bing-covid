@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Inject, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Area1, GlobalInfo} from './fetch-data.model';
+import {GlobalInfo} from './fetch-data.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 
@@ -10,9 +10,9 @@ import {MatSort} from '@angular/material/sort';
   styleUrls: ['./fetch-data-style.css']
 })
 export class FetchDataComponent implements AfterViewInit {
-  public forecasts: GlobalInfo;
-  public dataSource = new MatTableDataSource<Area1>();
-  displayedColumns: string[] = ['id', 'totalConfirmed', 'totalRecovered', 'totalDeaths'];
+  public forecasts: GlobalInfo[];
+  public dataSource = new MatTableDataSource<GlobalInfo>();
+  displayedColumns: string[] = ['country', 'cases', 'recovered', 'deaths','active','critical','casesPerOneMillion','deathsPerOneMillion'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngAfterViewInit(): void {
@@ -20,9 +20,9 @@ export class FetchDataComponent implements AfterViewInit {
   }
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<GlobalInfo>(baseUrl + 'weatherforecast').subscribe(result => {
+    http.get<GlobalInfo[]>(baseUrl + 'weatherforecast').subscribe(result => {
       this.forecasts = result;
-      this.dataSource.data = this.forecasts.areas;
+      this.dataSource.data = this.forecasts;
     }, error => console.error(error));
   }
 

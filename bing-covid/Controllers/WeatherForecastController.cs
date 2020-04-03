@@ -23,50 +23,62 @@ namespace bing_covid.Controllers
 
         [HttpGet]
         public async Task<Covid[]> Get()
-        {
-            var countryCodes =
-                JsonConvert.DeserializeObject<CountryCodes[]>(
-                    await System.IO.File.ReadAllTextAsync(@"country-code.json"));
-            var resultContent = await _client.GetAsync("https://api.coronastatistics.live/countries?sort=cases");
+        { 
+            var resultContent = await _client.GetAsync("https://api.coronatracker.com/v3/stats/worldometer/topCountry");
             var covidResult = JsonConvert.DeserializeObject<Covid[]>(await resultContent.Content.ReadAsStringAsync());
-            foreach (var item in covidResult)
-                item.CountryCode =
-                    countryCodes.FirstOrDefault(x => x.Name
-                            .Equals(item.Country, StringComparison.OrdinalIgnoreCase))
-                        ?.Code;
             return covidResult;
         }
     }
 
     public class Covid
     {
-        [JsonProperty("country")] public string Country { get; set; }
+        [JsonProperty("countryCode")]
+        public string CountryCode { get; set; }
 
-        [JsonProperty("cases")] public long Cases { get; set; }
+        [JsonProperty("country")]
+        public string Country { get; set; }
 
-        [JsonProperty("todayCases")] public long TodayCases { get; set; }
+        [JsonProperty("lat")]
+        public double? Lat { get; set; }
 
-        [JsonProperty("deaths")] public long Deaths { get; set; }
+        [JsonProperty("lng")]
+        public double? Lng { get; set; }
 
-        [JsonProperty("todayDeaths")] public long TodayDeaths { get; set; }
+        [JsonProperty("totalConfirmed")]
+        public long TotalConfirmed { get; set; }
 
-        [JsonProperty("recovered")] public long Recovered { get; set; }
+        [JsonProperty("totalDeaths")]
+        public long TotalDeaths { get; set; }
 
-        [JsonProperty("active")] public long Active { get; set; }
+        [JsonProperty("totalRecovered")]
+        public long TotalRecovered { get; set; }
 
-        [JsonProperty("critical")] public long Critical { get; set; }
+        [JsonProperty("dailyConfirmed")]
+        public long DailyConfirmed { get; set; }
 
-        [JsonProperty("casesPerOneMillion")] public double CasesPerOneMillion { get; set; }
+        [JsonProperty("dailyDeaths")]
+        public long DailyDeaths { get; set; }
 
-        [JsonProperty("deathsPerOneMillion")] public double DeathsPerOneMillion { get; set; }
+        [JsonProperty("activeCases")]
+        public long ActiveCases { get; set; }
 
-        [JsonProperty("countryCode")] public string CountryCode { get; set; } = "Unknown";
+        [JsonProperty("totalCritical")]
+        public long TotalCritical { get; set; }
+
+        [JsonProperty("totalConfirmedPerMillionPopulation")]
+        public long TotalConfirmedPerMillionPopulation { get; set; }
+
+        [JsonProperty("totalDeathsPerMillionPopulation")]
+        public long? TotalDeathsPerMillionPopulation { get; set; }
+
+        [JsonProperty("FR")]
+        public string Fr { get; set; }
+
+        [JsonProperty("PR")]
+        public string Pr { get; set; }
+
+        [JsonProperty("lastUpdated")]
+        public DateTimeOffset LastUpdated { get; set; }
     }
 
-    public class CountryCodes
-    {
-        [JsonProperty("name")] public string Name { get; set; }
-
-        [JsonProperty("code")] public string Code { get; set; }
-    }
 }

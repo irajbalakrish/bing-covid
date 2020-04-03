@@ -1,4 +1,4 @@
-<h1 class="itemspace" id="tableLabel">covid-19 <span class="card__category"> source : api.coronastatistics.live </span></h1>
+<h1 class="itemspace" id="tableLabel">covid-19 <span class="card__category"> source : api.coronatracker.com </span></h1>
 
 <p class="card__category" *ngIf="!forecasts"><em>Loading...</em></p>
 
@@ -14,9 +14,10 @@
         <span class="card__category"><mark> NETHERLANDS</mark></span>
         <div class="card__title" *ngFor="let area of forecasts">
           <div *ngIf="area.country=='Netherlands'">
-            <p>Confirmed : {{area?.cases | number}}</p>
-            <p>Recovered : {{area?.recovered | number}}</p>
-            <p>Deaths : {{area?.deaths | number}}</p>
+            <p>Confirmed : {{area?.totalConfirmed | number}}</p>
+            <p>Recovered : {{area?.totalRecovered | number}}</p>
+            <p>Deaths : {{area?.totalDeaths | number}}</p>
+            <p>Updated:{{area?.lastUpdated | date : 'medium' }}</p>
           </div>
         </div>
         <span class="card__title card__by">Click the tile for <a href="https://www.rivm.nl/en/news/current-information-about-novel-coronavirus-covid-19" class="card__author" title="author">Official Information</a></span>
@@ -35,9 +36,10 @@
         <span class="card__category"><mark>INDIA</mark></span>
         <div class="card__title" *ngFor="let area of forecasts">
           <div *ngIf="area.country=='India'">
-            <p>Confirmed : {{area?.cases | number}}</p>
-            <p>Recovered : {{area?.recovered | number}}</p>
-            <p>Deaths : {{area?.deaths | number}}</p>
+            <p>Confirmed : {{area?.totalConfirmed | number}}</p>
+            <p>Recovered : {{area?.totalRecovered | number}}</p>
+            <p>Deaths : {{area?.totalDeaths | number}}</p>
+            <p>Updated:{{area?.lastUpdated | date : 'medium' }}</p>
           </div>
         </div>
         <span class="card__title card__by">Click the tile for <a href="https://www.mygov.in/covid-19" class="card__author" title="author">Official Information</a></span>
@@ -71,43 +73,43 @@
   <!-- Name Column -->
   <ng-container matColumnDef="cases">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Cases</th>
-    <td mat-cell *matCellDef="let element"> {{element.cases | number}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.totalConfirmed | number}} </td>
   </ng-container>
 
   <!-- Weight Column -->
   <ng-container matColumnDef="recovered">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Recovered</th>
-    <td mat-cell *matCellDef="let element"> {{element.recovered | number}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.totalRecovered | number}} </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="deaths">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Deaths</th>
-    <td mat-cell *matCellDef="let element"> {{element.deaths | number}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.totalDeaths | number}} </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="active">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Active</th>
-    <td mat-cell *matCellDef="let element"> {{element.active | number}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.totalDeaths | number}} </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="critical">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Critical</th>
-    <td mat-cell *matCellDef="let element"> {{element.critical | number}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.totalCritical | number}} </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="casesPerOneMillion">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Cases Per One Million</th>
-    <td mat-cell *matCellDef="let element"> {{element.casesPerOneMillion | number}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.totalConfirmedPerMillionPopulation | number}} </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="deathsPerOneMillion">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Deaths Per One Million</th>
-    <td mat-cell *matCellDef="let element"> {{element.deathsPerOneMillion | number}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.totalDeathsPerMillionPopulation | number}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -1,15 +1,20 @@
 ﻿  export interface GlobalInfo {
+    countryCode: string;
     country: string;
-    cases: number;
-    todayCases: number;
-    deaths: number;
-    todayDeaths: number;
-    recovered: number;
-    active: number;
-    critical: number;
-    casesPerOneMillion: number;
-    deathsPerOneMillion: number;
-    countryCode:string;
+    lat?: number;
+    lng?: number;
+    totalConfirmed: number;
+    totalDeaths: number;
+    totalRecovered: number;
+    dailyConfirmed: number;
+    dailyDeaths: number;
+    activeCases: number;
+    totalCritical: number;
+    totalConfirmedPerMillionPopulation: number;
+    totalDeathsPerMillionPopulation?: number;
+    FR: string;
+    PR: string;
+    lastUpdated: Date;
   }
 
 

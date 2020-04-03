@@ -9,6 +9,7 @@
     critical: number;
     casesPerOneMillion: number;
     deathsPerOneMillion: number;
+    countryCode:string;
   }
 
 

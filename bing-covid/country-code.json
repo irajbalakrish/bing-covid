@@ -4,7 +4,7 @@
     "code": "AF"
   },
   {
-    "name": "Åland Islands",
+    "name": "Aland Islands",
     "code": "AX"
   },
   {
@@ -228,7 +228,7 @@
     "code": "CY"
   },
   {
-    "name": "Czech Republic",
+    "name": "Czechia",
     "code": "CZ"
   },
   {
@@ -408,7 +408,7 @@
     "code": "ID"
   },
   {
-    "name": "Iran, Islamic Republic Of",
+    "name": "Iran",
     "code": "IR"
   },
   {
@@ -464,7 +464,7 @@
     "code": "KP"
   },
   {
-    "name": "Korea, Republic of",
+    "name": "S. Korea",
     "code": "KR"
   },
   {
@@ -720,7 +720,7 @@
     "code": "RO"
   },
   {
-    "name": "Russian Federation",
+    "name": "Russia",
     "code": "RU"
   },
   {
@@ -768,7 +768,7 @@
     "code": "SN"
   },
   {
-    "name": "Serbia and Montenegro",
+    "name": "Serbia",
     "code": "CS"
   },
   {
@@ -912,11 +912,11 @@
     "code": "AE"
   },
   {
-    "name": "United Kingdom",
+    "name": "UK",
     "code": "GB"
   },
   {
-    "name": "United States",
+    "name": "USA",
     "code": "US"
   },
   {

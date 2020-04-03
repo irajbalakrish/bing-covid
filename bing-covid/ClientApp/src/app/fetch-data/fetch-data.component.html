@@ -64,8 +64,8 @@
       The actual rendered columns are set as a property on the row definition" -->
   <!-- Position Column -->
   <ng-container matColumnDef="country">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Country</th>
-    <td mat-cell *matCellDef="let element"> {{element.country | titlecase}} </td>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+    <td mat-cell *matCellDef="let element"><span class="flag-icon flag-icon-{{element.countryCode | lowercase}}"style="margin-right:10px;box-shadow: #fcf8e3"></span>{{element.country | titlecase}} </td>
   </ng-container>
 
   <!-- Name Column -->

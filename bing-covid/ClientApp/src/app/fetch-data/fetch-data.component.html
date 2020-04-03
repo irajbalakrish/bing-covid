@@ -1,5 +1,5 @@
 <h1 class="itemspace" id="tableLabel">covid-19 <span class="card__category"> source : api.coronatracker.com </span></h1>
-
+<p class="card__category">Updated:{{forecasts[0].lastUpdated | date : 'medium' }}</p>
 <p class="card__category" *ngIf="!forecasts"><em>Loading...</em></p>
 
 <section class="itemspace cards">
@@ -17,7 +17,7 @@
             <p>Confirmed : {{area?.totalConfirmed | number}}</p>
             <p>Recovered : {{area?.totalRecovered | number}}</p>
             <p>Deaths : {{area?.totalDeaths | number}}</p>
-            <p>Updated:{{area?.lastUpdated | date : 'medium' }}</p>
+
           </div>
         </div>
         <span class="card__title card__by">Click the tile for <a href="https://www.rivm.nl/en/news/current-information-about-novel-coronavirus-covid-19" class="card__author" title="author">Official Information</a></span>
@@ -39,7 +39,7 @@
             <p>Confirmed : {{area?.totalConfirmed | number}}</p>
             <p>Recovered : {{area?.totalRecovered | number}}</p>
             <p>Deaths : {{area?.totalDeaths | number}}</p>
-            <p>Updated:{{area?.lastUpdated | date : 'medium' }}</p>
+
           </div>
         </div>
         <span class="card__title card__by">Click the tile for <a href="https://www.mygov.in/covid-19" class="card__author" title="author">Official Information</a></span>

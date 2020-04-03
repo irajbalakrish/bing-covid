@@ -1,5 +1,5 @@
 <h1 class="itemspace" id="tableLabel">covid-19 <span class="card__category"> source : api.coronatracker.com </span></h1>
-<p class="card__category">Updated:{{forecasts[0].lastUpdated | date : 'medium' }}</p>
+<p class="card__category" *ngIf="forecasts">Updated:{{forecasts[0]?.lastUpdated | date : 'medium' }}</p>
 <p class="card__category" *ngIf="!forecasts"><em>Loading...</em></p>
 
 <section class="itemspace cards">

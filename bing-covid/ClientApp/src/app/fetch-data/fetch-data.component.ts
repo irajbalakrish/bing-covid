@@ -12,7 +12,7 @@ import {MatSort} from '@angular/material/sort';
 export class FetchDataComponent implements AfterViewInit {
   public forecasts: GlobalInfo[];
   public dataSource = new MatTableDataSource<GlobalInfo>();
-  displayedColumns: string[] = ['country', 'cases', 'recovered', 'deaths','active','critical','casesPerOneMillion','deathsPerOneMillion'];
+  displayedColumns: string[] = ['country', 'totalConfirmed', 'totalRecovered', 'totalDeaths','activeCases','totalCritical','totalConfirmedPerMillionPopulation','totalDeathsPerMillionPopulation'];
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngAfterViewInit(): void {
